@@ -1,6 +1,7 @@
 import { SanityDocument } from "next-sanity";
 import Link from "next/link";
 import Image from "next/image";
+import { urlForImage } from "@/sanity/lib/image";
 
 export default function Posts({ person }: { person: SanityDocument[] }) {
   return (
@@ -10,10 +11,10 @@ export default function Posts({ person }: { person: SanityDocument[] }) {
           <Link key={post._id} href="#">
             <h2 className="p-4 hover:bg-blue-50">{post.fullName}</h2>
             <Image
-              src="https://cdn.sanity.io/images/b4zp8ctq/production/465e63f9113dec3405a38ca000cf432e3ca00383-960x960.webp"
+              src={urlForImage(post.imageUrl)}
               width={300}
               height={300}
-              alt="Picture of the author"
+              alt={post.fullName}
               priority={true}
             ></Image>
           </Link>
